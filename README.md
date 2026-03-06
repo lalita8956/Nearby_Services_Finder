@@ -18,7 +18,7 @@ Category Filtering
 
 ## 1️⃣ Clone the Repository
 
-git clone https://github.com/your-username/nearby-services-finder.git
+git clone https://github.com/lalita8956/Nearby_Services_Finder.git
 
 cd nearby-services-finder
 
