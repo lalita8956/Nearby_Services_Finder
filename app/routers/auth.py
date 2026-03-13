@@ -8,18 +8,26 @@ from fastapi import HTTPException
 router = APIRouter(prefix="/auth")
 
 @router.post("/register")
-def register(username:str,email:str,password:str,db:Session=Depends(get_db)):
+def register(username: str, email: str, password: str, db: Session = Depends(get_db)):
 
-    user = User(
+    existing_user = db.query(User).filter(User.username == username).first()
+
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Username already exists")
+
+    hashed_password = hash_password(password)
+
+    new_user = User(
         username=username,
         email=email,
-        password=hash_password(password)
+        password=hashed_password,
+        role="user"
     )
 
-    db.add(user)
+    db.add(new_user)
     db.commit()
 
-    return {"message":"user created"}
+    return {"message": "User registered successfully"}
 
 @router.post("/login")
 def login(

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from geoalchemy2.elements import WKTElement
-from geoalchemy2.functions import ST_DWithin, ST_Distance
+from geoalchemy2.functions import ST_Y, ST_DWithin, ST_Distance, ST_X
 
 from app.database import get_db
 from app.models.service import Service
@@ -57,7 +57,9 @@ def list_services(
             "id": s.id,
             "name": s.name,
             "category": s.category,
-            "rating": s.rating
+            "rating": s.rating,
+            "latitude": db.scalar(ST_Y(s.location)),
+            "longitude": db.scalar(ST_X(s.location))
         }
         for s in services
     ]
@@ -97,7 +99,7 @@ def nearby_services(
             "name": service.name,
             "category": service.category,
             "rating": service.rating,
-            "distance_km": round(distance / 1000, 2)
+            "distance_km": round(float (distance) / 1000, 2)
         }
         for service, distance in results
     ]

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nearby Services Finder</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</head>
+
+<body>
+
+<h1>Nearby Services Finder</h1>
+
+
+<div class="card">
+<h2>Register</h2>
+
+<input id="reg_user" placeholder="username">
+<input id="reg_email" placeholder="email">
+<input id="reg_pass" placeholder="password">
+
+<button onclick="register()">Register</button>
+</div>
+
+
+<div class="card">
+<h2>Login</h2>
+
+<input id="login_user" placeholder="username">
+<input id="login_pass" placeholder="password">
+
+<button onclick="login()">Login</button>
+</div>
+
+
+
+<div class="card">
+<h2>Add Service</h2>
+
+<input id="name" placeholder="Service name">
+<input id="category" placeholder="Category">
+<input id="lat" placeholder="Latitude">
+<input id="lon" placeholder="Longitude">
+
+<button onclick="addService()">Add</button>
+</div>
+
+
+
+<div class="card">
+<h2>Nearby Search</h2>
+
+<input id="user_lat" placeholder="Latitude">
+<input id="user_lon" placeholder="Longitude">
+<input id="radius" placeholder="Radius KM">
+
+<button onclick="nearby()">Search</button>
+
+<div class="card">
+<h2>Map View</h2>
+<div id="map" style="height:400px;"></div>
+</div>
+</div>
+
+
+
+<div class="card">
+<h2>All Services</h2>
+
+<button onclick="getServices()">Load Services</button>
+
+<div id="services"></div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+
+
